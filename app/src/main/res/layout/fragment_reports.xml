@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_color"
+    tools:context=".fragments.reports">
+
+
+    <ImageView
+        android:id="@+id/g_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/g_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/salesname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/et_border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/sfprotext_semibold"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text=" Name"
+        android:textColor="@color/app_color"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/g_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/g_logo" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/dashboard_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/g_logo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/sfpro_text_regular"
+                android:text="Reports"
+                android:visibility="visible"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/app_color"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/imeireporttxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/sfpro_text_regular"
+                android:text="IMEI Report"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/app_color"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/imeireport"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:background="@drawable/et_border"
+                android:backgroundTint="@color/app_bg_color"
+                android:elevation="2dp"
+                android:visibility="visible"
+                android:fontFamily="@font/sfpro_text_regular"
+                android:gravity="center"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="5dp"
+                android:text="IMEI Report"
+                android:textColor="@color/app_color" />
+
+            <LinearLayout
+                android:id="@+id/items_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/et_border"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:text="Model Name"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/tmname"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:text="Brand"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/tbname"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:text="DBR Name"
+                        android:gravity="center"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/tdbrname"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:text="Retailer Name"
+                        android:gravity="center"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/trname"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:text="Secondary Date"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/tsdate"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:text="SellOut Date"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/tsoutdate"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:text="Activation Date"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:id="@+id/tacdate"
+                        android:gravity="center"
+                        android:background="@drawable/etborder1"
+                        android:fontFamily="@font/sfpro" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:id="@+id/sharebtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:background="@drawable/et_border"
+                        android:backgroundTint="@color/app_bg_color"
+                        android:elevation="2dp"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:gravity="center"
+                        android:text="Share"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/backbtn"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:background="@drawable/et_border"
+                        android:backgroundTint="@color/app_bg_color"
+                        android:elevation="2dp"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/sfpro_text_regular"
+                        android:gravity="center"
+                        android:text="Back"
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/scan_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:padding="10dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:background="@drawable/et_border"-->
+<!--        android:layout_centerHorizontal="true">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:src="@drawable/ic_baseline_camera_alt_24"-->
+<!--            app:tint="@color/black" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:fontFamily="@font/sfpro_text_regular"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:text="Scan IMEI"-->
+<!--            android:textColor="@color/app_color"-->
+<!--            android:textSize="15sp" />-->
+<!--    </LinearLayout>-->
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,33 @@
+package com.futureproducts.gbrself.reportrsmodel
+
+data class List(
+    val battery_war: String,
+    val battery_war_days: String,
+    val brand: String,
+    val charger_war: String,
+    val charger_war_days: String,
+    val charging_adapter_war: String,
+    val charging_adapter_war_days: String,
+    val distributor_id: String,
+    val distributor_name: String,
+    val grn_date: String,
+    val imei: String,
+    val imei2: String,
+    val marketing_name: String,
+    val pro_war_days: String,
+    val prowar: String,
+    val retailer_id: String,
+    val retailer_name: String,
+    val secondary_time: String,
+    val seconday_direct: String,
+    val sell_out_date: String,
+    val sellout: String,
+    val sku: String,
+    val tertialry_direct: String,
+    val tertiary_time: String,
+    val usb_war: String,
+    val usb_war_days: String,
+    val warranty_end_date: String,
+    val wired_earphone_war: String,
+    val wired_earphone_war_days: String
+)
