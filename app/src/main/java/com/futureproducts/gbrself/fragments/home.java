@@ -58,7 +58,7 @@ public class home extends Fragment {
             public void onClick(View view) {
 
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new salesorderfragment()).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new salesorderfragment(),"salesOrder").addToBackStack(null).commit();
 
             }
         });

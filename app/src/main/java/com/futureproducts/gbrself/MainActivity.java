@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -21,13 +22,14 @@ import com.futureproducts.gbrself.fragments.menu;
 import com.futureproducts.gbrself.fragments.orders;
 import com.futureproducts.gbrself.fragments.profile;
 import com.futureproducts.gbrself.fragments.viewtickets;
+import com.futureproducts.gbrself.homefragments.salesorderfragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements BackButtonHandlerInterface, OnBackClickListener {
+public class MainActivity extends AppCompatActivity implements BackButtonHandlerInterface {
 
     BottomNavigationView bottomNav;
     DrawerLayout dLayout;
@@ -120,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements BackButtonHandler
 //                    id1.setChecked(false);
                     selectedFragment = new home();
                     replacefragment(selectedFragment);
+
+
                     break;
                 case R.id.orders:
 //                    id1.setChecked(false);
@@ -159,7 +163,23 @@ public class MainActivity extends AppCompatActivity implements BackButtonHandler
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
+        salesorderfragment salesorderfragment;
+        if((salesorderfragment = (com.futureproducts.gbrself.homefragments.salesorderfragment)
+                getSupportFragmentManager().findFragmentByTag("salesOrder"))!=null){
+
+            if(salesorderfragment.isAdded()){
+                salesorderfragment.onBackClick();
+            }else{
+                super.onBackPressed();
+            }
+
+        }else{
+
+            super.onBackPressed();
+
+        }
+
 //        finish();
 //        Toast.makeText(this, "backpress", Toast.LENGTH_SHORT).show();
     }
@@ -175,8 +195,5 @@ public class MainActivity extends AppCompatActivity implements BackButtonHandler
 
     }
 
-    @Override
-    public boolean onBackClick() {
-        return true;
-    }
+
 }
