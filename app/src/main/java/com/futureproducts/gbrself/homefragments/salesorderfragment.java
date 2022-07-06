@@ -81,6 +81,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -96,7 +98,11 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
     Apiinterface apiinterface;
     List<shoplistmodel> list;
     ArrayList<itemdetailsmodel> finallist;
-    ArrayList<itemdetailsmodel> scanedlist, nscanedlist, n1scanedlist;
+    ArrayList<itemdetailsmodel>
+//            scanedlist,
+            nscanedlist
+//            , n1scanedlist
+            ;
     String id, user_unique_id, name, email, mobile, user_type, password, country_id, country_name, governate_id, governate,
             city, locality, locality_ar, locality_id, time, address, login_id, login_otp, outlet_name, login_time, profile_update,
             signup_type, social_auth_token, img_url, seller_id, seller_name, backend_register, backend_verify, user_profile_verified,
@@ -152,7 +158,7 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
 
         apiinterface = ApiClient.getClient().create(Apiinterface.class);
         list = new ArrayList<>();
-        scanedlist = new ArrayList<>();
+//        scanedlist = new ArrayList<>();
         listview = v.findViewById(R.id.listview);
         editsearch = v.findViewById(R.id.search);
         tshopname = v.findViewById(R.id.shopname);
@@ -184,7 +190,7 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
         submitdialog.setTitle("Placing order please wait");
         tdialog = new ProgressDialog(getActivity());
         nscanedlist = new ArrayList<>();
-        n1scanedlist = new ArrayList<>();
+//        n1scanedlist = new ArrayList<>();
         addreset = v.findViewById(R.id.addreset);
         ss = new ArrayList<>();
 
@@ -209,7 +215,7 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
         scan.setBackgroundColor(Color.parseColor("#EDEDED"));
         scan.setVisibility(View.GONE);
 
-        if (scanedlist.size() <= 0) {
+        if (nscanedlist.size() <= 0) {
             addphone.setEnabled(false);
             addphone.setBackgroundColor(Color.parseColor("#FBFBFB"));
         } else {
@@ -336,17 +342,16 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
 
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
-                        scanedlist.clear();
+//                        scanedlist.clear();
                         finallist.clear();
                         totalcartamount =0;
-                        nscanedlist.clear();
-                        nscanedlist.addAll(n1scanedlist);
-
-                        Log.d("tag", "checkallsize  "+scanedlist.size()+"  "+finallist.size()+" "+totalcartamount+"  "+nscanedlist.size()+" "+ n1scanedlist);
-
-                        for(int i =0; i<n1scanedlist.size(); i++){
-                            Log.d("tag", "addqtycheck  "+n1scanedlist.get(i).getQty()+ "  "+n1scanedlist.get(i).getSimei1());
-                        }
+//                        nscanedlist.clear();
+//                        nscanedlist.addAll(n1scanedlist);
+//                        Log.d("tag", "checkallsize  "+scanedlist.size()+"  "+finallist.size()+" "+totalcartamount+"  "+nscanedlist.size()+" "+ n1scanedlist);
+//
+//                        for(int i =0; i<n1scanedlist.size(); i++){
+//                            Log.d("tag", "addqtycheck  "+n1scanedlist.get(i).getQty()+ "  "+n1scanedlist.get(i).getSimei1());
+//                        }
 
 
                         padapter = new placeorderadapter(finallist, getActivity(), salesorderfragment.this);
@@ -472,11 +477,11 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
                                     Toast.makeText(getActivity(), "Please enter valid imei number", Toast.LENGTH_SHORT).show();
                                 } else {
                                     imeiscandialog.show();
-                                    if (scanedlist.size() > 0) {
+                                    if (nscanedlist.size() > 0) {
                                         Log.d("tag", "checkpoint");
-                                        for (int i = 0; i < scanedlist.size(); i++) {
-                                            if (scanedlist.get(i).getSimei1().matches(imeivalue) ||
-                                                    scanedlist.get(i).getSimei2().matches(imeivalue)) {
+                                        for (int i = 0; i < nscanedlist.size(); i++) {
+                                            if (nscanedlist.get(i).getSimei1().matches(imeivalue) ||
+                                                    nscanedlist.get(i).getSimei2().matches(imeivalue)) {
                                                 imeiscandialog.dismiss();
                                                 Toast.makeText(getActivity(), "IMEI Already Added", Toast.LENGTH_SHORT).show();
                                             } else {
@@ -546,18 +551,22 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
 
                 Toast.makeText(getActivity(), "imeicheck", Toast.LENGTH_SHORT).show();
 
-                scanedlist.clear();
+//                scanedlist.clear();
                 finallist.clear();
                 ss.clear();
                 totalcartamount = 0;
-                scanedlist.addAll(nscanedlist);
-                finallist.addAll(scanedlist);
+//                scanedlist.addAll(nscanedlist);
+
+                for (itemdetailsmodel itemdetailsmodel : nscanedlist) {
+                    finallist.add(new itemdetailsmodel(itemdetailsmodel));
+                }
+//                finallist = new ArrayList<>(nscanedlist);
 
                 for (int i = 0; i < finallist.size(); i++) {
                     Log.d("tag", "checkimei13  " + finallist.get(i).getQty() + "  " + finallist.size());
                 }
 
-                if (scanedlist.size() <= 0) {
+                if (nscanedlist.size() <= 0) {
                     Toast.makeText(getActivity(), "Please add imei", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -587,7 +596,7 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
                             String im1 = finallist.get(j).getSimei1();
                             Log.d("tag", "checkpointf1  " + e + "  " + finallist.get(k).getItem_price());
 
-                            for (int s = 0; s < scanedlist.size(); s++) {
+                            for (int s = 0; s < finallist.size(); s++) {
                                 String imm = im + ", " + im1;
                                 finallist.get(k).setSimei1(imm);
                             }
@@ -624,7 +633,6 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
                     String v = finallist.get(g).getValue();
                     int v1 = Integer.parseInt(v);
                     totalcartamount = totalcartamount + v1;
-
                 }
 
                 Log.d("tag", "finalprice" + totalcartamount);
@@ -641,6 +649,16 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
                 addphone.setBackgroundColor(Color.parseColor("#FBFBFB"));
                 scan.setEnabled(false);
                 scan.setBackgroundColor(Color.parseColor("#EDEDED"));
+
+
+
+                for(itemdetailsmodel item : finallist){
+                    Log.d("ttt","final "+item.getSimei1());
+                }
+
+                for(itemdetailsmodel item : nscanedlist){
+                    Log.d("ttt","scaned "+item.getSimei1());
+                }
 
 
             }
@@ -2038,22 +2056,22 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
                         String tertialry_direct = jsonObject1.optString("tertialry_direct");
 
 
-                        scanedlist.add(new itemdetailsmodel(smodel, scolor, simei1, simei2, item_price,
-                                srno, sku, brand, seconday_direct, tertialry_direct, "1", item_price));
+//                        scanedlist.add(new itemdetailsmodel(smodel, scolor, simei1, simei2, item_price,
+//                                srno, sku, brand, seconday_direct, tertialry_direct, "1", item_price));
                         addphone.setEnabled(true);
                         addphone.setBackgroundColor(Color.parseColor("#011135"));
 
 
-                        for (int i = 0; i < scanedlist.size() - 1; i++) {
-                            for (int j = i + 1; j < scanedlist.size(); j++) {
-                                if (scanedlist.get(j).getSimei1().equals(scanedlist.get(i).getSimei1())) {
-                                    scanedlist.remove(j);
-
-                                    Log.d("tag", "checkrepeat" + i);
-                                }
-
-                            }
-                        }
+//                        for (int i = 0; i < scanedlist.size() - 1; i++) {
+//                            for (int j = i + 1; j < scanedlist.size(); j++) {
+//                                if (scanedlist.get(j).getSimei1().equals(scanedlist.get(i).getSimei1())) {
+//                                    scanedlist.remove(j);
+//
+//                                    Log.d("tag", "checkrepeat" + i);
+//                                }
+//
+//                            }
+//                        }
 
 //                        nscanedlist.clear();
                         nscanedlist.add(new itemdetailsmodel(smodel, scolor, simei1, simei2, item_price,
@@ -2070,19 +2088,23 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
                             }
                         }
 
-                        n1scanedlist.add(new itemdetailsmodel(smodel, scolor, simei1, simei2, item_price,
-                                srno, sku, brand, seconday_direct, tertialry_direct, "1", item_price));
-
-                        for (int i = 0; i < n1scanedlist.size() - 1; i++) {
-                            for (int j = i + 1; j < n1scanedlist.size(); j++) {
-                                if (n1scanedlist.get(j).getSimei1().equals(n1scanedlist.get(i).getSimei1())) {
-                                    n1scanedlist.remove(j);
-
-                                    Log.d("tag", "checkrepeatnscan " + n1scanedlist.size());
-                                }
-
-                            }
+                        for(itemdetailsmodel item : nscanedlist){
+                            Log.d("ttt","scaned "+item.getSimei1());
                         }
+
+//                        n1scanedlist.add(new itemdetailsmodel(smodel, scolor, simei1, simei2, item_price,
+//                                srno, sku, brand, seconday_direct, tertialry_direct, "1", item_price));
+//
+//                        for (int i = 0; i < n1scanedlist.size() - 1; i++) {
+//                            for (int j = i + 1; j < n1scanedlist.size(); j++) {
+//                                if (n1scanedlist.get(j).getSimei1().equals(n1scanedlist.get(i).getSimei1())) {
+//                                    n1scanedlist.remove(j);
+//
+//                                    Log.d("tag", "checkrepeatnscan " + n1scanedlist.size());
+//                                }
+//
+//                            }
+//                        }
 
 
 
@@ -2174,10 +2196,10 @@ public class salesorderfragment extends Fragment implements SearchView.OnQueryTe
                         } else {
                             intentData = barcodes.valueAt(0).displayValue;
                             barcodeValue.setText(intentData);
-                            if (scanedlist.size() > 0) {
-                                for (int i = 0; i < scanedlist.size(); i++) {
-                                    if (scanedlist.get(i).getSimei1().matches(intentData) ||
-                                            scanedlist.get(i).getSimei2().matches(intentData)) {
+                            if (nscanedlist.size() > 0) {
+                                for (int i = 0; i < nscanedlist.size(); i++) {
+                                    if (nscanedlist.get(i).getSimei1().matches(intentData) ||
+                                            nscanedlist.get(i).getSimei2().matches(intentData)) {
                                         imeiscandialog.dismiss();
                                         Toast.makeText(getActivity(), "IMEI Already Added", Toast.LENGTH_SHORT).show();
                                     } else {

@@ -26,6 +26,21 @@ public class itemdetailsmodel {
         this.value = value;
     }
 
+    public itemdetailsmodel(itemdetailsmodel itemdetailsmodel){
+        this.setSmodel(itemdetailsmodel.getSmodel());
+        this.setScolor(itemdetailsmodel.getScolor());
+        this.setSimei1(itemdetailsmodel.getSimei1());
+        this.setSimei2(itemdetailsmodel.getSimei2());
+        this.setItem_price(itemdetailsmodel.getItem_price());
+        this.setSrno(itemdetailsmodel.getSrno());
+        this.setSku(itemdetailsmodel.getSku());
+        this.setBrand(itemdetailsmodel.getBrand());
+        this.setSeconday_direct(itemdetailsmodel.getSeconday_direct());
+        this.setTertialry_direct(itemdetailsmodel.getTertialry_direct());
+        this.setQty(itemdetailsmodel.getQty());
+        this.setValue(itemdetailsmodel.getValue());
+    }
+
     public void setSmodel(String smodel) {
         this.smodel = smodel;
     }
