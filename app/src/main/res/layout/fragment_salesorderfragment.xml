@@ -300,6 +300,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/imeilistrecycler"
                         android:layout_width="match_parent"
+                        tools:listitem="@layout/imeiselectlayout"
                         android:layout_height="100dp" />
 
                     <TextView

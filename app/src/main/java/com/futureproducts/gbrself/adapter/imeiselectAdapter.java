@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -17,7 +19,7 @@ import com.futureproducts.gbrself.models.itemdetailsmodel;
 
 import java.util.List;
 
-public class imeiselectAdapter extends RecyclerView.Adapter<holder>{
+public class imeiselectAdapter extends RecyclerView.Adapter<imeiselectAdapter.VH>{
 
 
 
@@ -34,40 +36,16 @@ public class imeiselectAdapter extends RecyclerView.Adapter<holder>{
 
     @NonNull
     @Override
-    public holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context
-                = parent.getContext();
-        LayoutInflater inflater
-                = LayoutInflater.from(context);
-
-        // Inflate the layout
-
-        View photoView
-                = inflater
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new VH(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.imeiselectlayout,
-                        null, false);
-
-        holder viewHolder
-                = new holder(photoView);
-        return viewHolder;
+                        null, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holder holder, int position) {
-        final int index = holder.getAdapterPosition();
+    public void onBindViewHolder(@NonNull VH holder, int position) {
 
-        Log.d("tag", "checkimeis"+list.get(position).getSimei1());
-//        holder.limei2.setText(list.get(position).getSimei1());
-        holder.llimei1.setText(list.get(position).getSimei1());
-//        holder.llimei2.setText(list.get(position).getSimei2());
-        holder.llmarket.setText(list.get(position).getScolor());
-        holder.llclose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callback.checked(holder.getAdapterPosition());
-                notifyDataSetChanged();
-            }
-        });
+        holder.bind(list.get(position));
 
     }
 
@@ -79,6 +57,37 @@ public class imeiselectAdapter extends RecyclerView.Adapter<holder>{
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public class VH extends RecyclerView.ViewHolder{
+
+        private final TextView limeimname,limei1;
+        private final ImageView limeiclose;
+
+        public VH(@NonNull View itemView) {
+            super(itemView);
+
+            limeimname = itemView.findViewById(R.id.limeimname);
+            limei1 = itemView.findViewById(R.id.limei1);
+            limeiclose = itemView.findViewById(R.id.limeiclose);
+
+        }
+
+        void bind(itemdetailsmodel item){
+
+
+            limeimname.setText(item.getScolor());
+            limei1.setText(item.getSimei1());
+            Log.d("ttt","binding: "+item.getSimei1());
+            limeiclose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.checked(getAdapterPosition());
+                    notifyDataSetChanged();
+                }
+            });
+
+        }
     }
 
     public interface IAdapterCallback{
